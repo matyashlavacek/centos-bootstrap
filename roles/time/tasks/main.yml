@@ -1,0 +1,11 @@
+- name: ensure timezone is set to UTC
+  timezone:
+    name: UTC
+- name: ensure ntp is installed
+  yum:
+    name: ntp
+- name: ensure ntp is enabled and running
+  systemd:
+    name: ntpd
+    state: started
+    enabled: true
