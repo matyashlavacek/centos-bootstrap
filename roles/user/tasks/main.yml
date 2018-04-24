@@ -1,0 +1,14 @@
+- name: ensure {{ user_name }} group exists
+  group:
+    name: '{{ user_name }}'
+- name: ensure {{ user_name }} user exists
+  user:
+    name: '{{ user_name }}'
+    groups: '{{ user_name }}, wheel'
+    append: yes
+    password: '{{ user_password }}'
+- name: ensure authorized_key present
+  authorized_key:
+    user: '{{ user_name }}'
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"

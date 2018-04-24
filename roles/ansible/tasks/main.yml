@@ -1,0 +1,16 @@
+- name: ensure ansible user exists
+  user:
+    name: ans
+    shell: /bin/bash
+    groups: wheel
+- name: ensure ansible user is in sudoers without password
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^ans '
+    line: 'ans ALL=(ALL) NOPASSWD: ALL'
+- name: ensure authorized_key present
+  authorized_key:
+    user: ans
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/ans.pub') }}"

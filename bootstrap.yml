@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes # become_user defaults to root
+  vars_prompt:
+    - name: user_name
+      prompt: Enter username
+    - name: user_password
+      prompt: Enter password
+      private: yes
+      encrypt: sha512_crypt
+      confirm: yes
+  roles:
+    - ansible
+    - user
+    - security
