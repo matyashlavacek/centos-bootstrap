@@ -14,7 +14,7 @@ ssh-keygen -t rsa -b 4096 -C "email@example.com"
 ## Ansible
 
 ### Setup hosts / inventories
-You can work with inventories or just setup local `~/etc/ansible/hosts` file, e.g.:
+You can work with inventories or just setup local `/etc/ansible/hosts` file, e.g.:
 ```
 [local]
 vagrant ansible_host=127.0.0.1 ansible_user=vagrant ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
